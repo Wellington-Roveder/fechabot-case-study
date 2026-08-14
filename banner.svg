@@ -1,0 +1,65 @@
+<svg viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0D0F"/>
+      <stop offset="100%" stop-color="#14181A"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00FF7F" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#00FF7F" stop-opacity="0.55"/>
+    </linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#1F2937"/>
+    </pattern>
+  </defs>
+
+  <!-- base -->
+  <rect width="1200" height="280" fill="url(#bg)"/>
+  <rect width="1200" height="280" fill="url(#dots)" opacity="0.5"/>
+
+  <!-- hairline frame -->
+  <rect x="0.5" y="0.5" width="1199" height="279" fill="none" stroke="#1F2937" stroke-width="1"/>
+
+  <!-- wordmark -->
+  <text x="72" y="118" font-family="'JetBrains Mono','Courier New',monospace" font-size="54" font-weight="700" letter-spacing="1" fill="#F2F2F0">FECHA<tspan fill="#00FF7F">BOT</tspan></text>
+
+  <!-- eyebrow -->
+  <text x="74" y="72" font-family="'JetBrains Mono','Courier New',monospace" font-size="13" letter-spacing="4" fill="#6B7280">CASE STUDY TÉCNICO</text>
+
+  <!-- subtitle -->
+  <text x="74" y="156" font-family="Arial, sans-serif" font-size="17" fill="#9CA3AF">De uma planilha Excel a uma mensagem no WhatsApp — em produção real.</text>
+
+  <!-- divider -->
+  <line x1="74" y1="184" x2="560" y2="184" stroke="#1F2937" stroke-width="1"/>
+
+  <!-- tags -->
+  <text x="74" y="212" font-family="'JetBrains Mono','Courier New',monospace" font-size="13" fill="#4B5563">FastAPI</text>
+  <text x="158" y="212" font-family="'JetBrains Mono','Courier New',monospace" font-size="13" fill="#4B5563">Next.js</text>
+  <text x="240" y="212" font-family="'JetBrains Mono','Courier New',monospace" font-size="13" fill="#4B5563">PostgreSQL</text>
+  <text x="352" y="212" font-family="'JetBrains Mono','Courier New',monospace" font-size="13" fill="#4B5563">Redis</text>
+  <text x="424" y="212" font-family="'JetBrains Mono','Courier New',monospace" font-size="13" fill="#4B5563">Celery</text>
+
+  <!-- signature graphic: spreadsheet -> whatsapp bubble -->
+  <g transform="translate(760,60)">
+    <!-- spreadsheet grid -->
+    <g stroke="#374151" stroke-width="1.5" fill="none">
+      <rect x="0" y="0" width="120" height="90" rx="4"/>
+      <line x1="0" y1="30" x2="120" y2="30"/>
+      <line x1="0" y1="60" x2="120" y2="60"/>
+      <line x1="40" y1="0" x2="40" y2="90"/>
+      <line x1="80" y1="0" x2="80" y2="90"/>
+    </g>
+    <rect x="40" y="30" width="40" height="30" fill="#00FF7F" opacity="0.18"/>
+    <rect x="40.5" y="30.5" width="39" height="29" fill="none" stroke="#00FF7F" stroke-width="1.5"/>
+
+    <!-- flow line -->
+    <path d="M 128 45 C 165 45, 165 45, 200 45" stroke="url(#glow)" stroke-width="2" fill="none" stroke-dasharray="4 5"/>
+
+    <!-- chat bubble -->
+    <path d="M 210 8 h 96 a 10 10 0 0 1 10 10 v 54 a 10 10 0 0 1 -10 10 h -66 l -20 18 v -18 h -10 a 10 10 0 0 1 -10 -10 v -54 a 10 10 0 0 1 10 -10 z"
+          fill="#101413" stroke="#00FF7F" stroke-width="1.5"/>
+    <line x1="228" y1="34" x2="292" y2="34" stroke="#4B5563" stroke-width="3" stroke-linecap="round"/>
+    <line x1="228" y1="50" x2="270" y2="50" stroke="#4B5563" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 228 64 l 6 6 l 12 -12" stroke="#00FF7F" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
