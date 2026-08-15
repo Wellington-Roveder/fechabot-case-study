@@ -109,7 +109,7 @@ fechabot-case-study/
 ### Login e autenticação em duas etapas (MFA)
 
 Sessão via cookie `httpOnly`, com verificação TOTP como segunda etapa —
-detalhado na [ADR de modelo de sessão](./decisions).
+detalhado no [ADR de modelo de sessão](./decisions/001-modelo-sessao-cookie-csrf-redis.md).
 
 <p align="center">
   <img src="./media/videos/login_mfa.gif" alt="Login com MFA" width="500"/>
