@@ -153,8 +153,29 @@ real e valores de exemplo para validação antes do envio.
 > valores de teste — nunca dado real de cliente (ver política de conteúdo
 > deste repositório).
 
-<!-- TODO: envio real chegando no WhatsApp — pendente de aprovação de template pela Meta -->
-<!-- TODO: tela de Histórico -->
+### Prova end-to-end: mensagem entregue no WhatsApp real
+
+Template aprovado pela Meta, pipeline completo validado ponta a ponta —
+da planilha até a mensagem chegando de fato no WhatsApp.
+
+<p align="center">
+  <img src="./media/screenshots/whatsapp_delivery_confirmation.png" alt="Mensagens entregues no WhatsApp" width="500"/>
+</p>
+
+### Novo envio e histórico
+
+Upload da planilha e confirmação de enfileiramento.
+
+<p align="center">
+  <img src="./media/videos/send_confirmation.gif" alt="Novo envio" width="600"/>
+</p>
+
+Histórico de envios — destinatários removidos após os testes; o
+próprio produto reflete isso nativamente como "Destinatário removido".
+
+<p align="center">
+  <img src="./media/screenshots/send_history.png" alt="Histórico de envios" width="600"/>
+</p>
 
 ## 🗺️ Roadmap e maturidade
 
