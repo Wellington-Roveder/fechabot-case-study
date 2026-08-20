@@ -1,0 +1,81 @@
+<svg viewBox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#00FF7F"/>
+    </marker>
+    <marker id="arrowMuted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5563"/>
+    </marker>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0D0F"/>
+      <stop offset="100%" stop-color="#14181A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="650" fill="url(#bg)"/>
+  <text x="500" y="34" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" letter-spacing="3" fill="#6B7280">ARQUITETURA — FECHABOT</text>
+
+  <!-- Frontend -->
+  <rect x="410" y="55" width="180" height="58" rx="8" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+  <text x="500" y="79" text-anchor="middle" font-family="Arial" font-size="14" fill="#F2F2F0" font-weight="bold">Frontend</text>
+  <text x="500" y="98" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#6B7280">Next.js</text>
+
+  <!-- FastAPI -->
+  <rect x="410" y="165" width="180" height="58" rx="8" fill="#0d1f17" stroke="#00FF7F" stroke-width="1.5"/>
+  <text x="500" y="189" text-anchor="middle" font-family="Arial" font-size="14" fill="#F2F2F0" font-weight="bold">FastAPI</text>
+  <text x="500" y="208" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#00FF7F">backend / API</text>
+
+  <!-- Frontend <-> FastAPI -->
+  <line x1="500" y1="113" x2="500" y2="165" stroke="#00FF7F" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="514" y="142" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">HTTPS + cookie httpOnly</text>
+
+  <!-- Row 3: Postgres, Redis, R2, Claude -->
+  <!-- Postgres -->
+  <rect x="60" y="305" width="180" height="58" rx="8" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+  <text x="150" y="329" text-anchor="middle" font-family="Arial" font-size="13" fill="#F2F2F0" font-weight="bold">PostgreSQL</text>
+  <text x="150" y="348" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">dados por tenant</text>
+
+  <!-- Redis -->
+  <rect x="300" y="305" width="180" height="58" rx="8" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+  <text x="390" y="329" text-anchor="middle" font-family="Arial" font-size="13" fill="#F2F2F0" font-weight="bold">Redis</text>
+  <text x="390" y="348" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">fila + allowlist sessão</text>
+
+  <!-- R2 -->
+  <rect x="540" y="305" width="180" height="58" rx="8" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+  <text x="630" y="329" text-anchor="middle" font-family="Arial" font-size="13" fill="#F2F2F0" font-weight="bold">Cloudflare R2</text>
+  <text x="630" y="348" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">planilhas originais</text>
+
+  <!-- Claude API -->
+  <rect x="780" y="305" width="180" height="58" rx="8" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+  <text x="870" y="329" text-anchor="middle" font-family="Arial" font-size="13" fill="#F2F2F0" font-weight="bold">Claude API</text>
+  <text x="870" y="348" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">FechaBot IA</text>
+
+  <!-- FastAPI -> row3 connectors -->
+  <path d="M 460 223 L 150 305" stroke="#4B5563" stroke-width="1.5" fill="none" marker-end="url(#arrowMuted)"/>
+  <path d="M 490 223 L 390 305" stroke="#4B5563" stroke-width="1.5" fill="none" marker-end="url(#arrowMuted)"/>
+  <path d="M 545 223 L 630 305" stroke="#4B5563" stroke-width="1.5" fill="none" marker-end="url(#arrowMuted)"/>
+  <path d="M 575 223 L 870 305" stroke="#4B5563" stroke-width="1.5" fill="none" marker-end="url(#arrowMuted)"/>
+  <text x="740" y="278" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">chamada direta (chat)</text>
+
+  <!-- Celery -->
+  <rect x="300" y="425" width="180" height="58" rx="8" fill="#0d1f17" stroke="#00FF7F" stroke-width="1.5"/>
+  <text x="390" y="449" text-anchor="middle" font-family="Arial" font-size="13" fill="#F2F2F0" font-weight="bold">Celery worker</text>
+  <text x="390" y="468" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#00FF7F">fila assíncrona</text>
+
+  <line x1="390" y1="363" x2="390" y2="425" stroke="#00FF7F" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="404" y="398" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">broker</text>
+
+  <!-- Meta Cloud API -->
+  <rect x="300" y="545" width="180" height="58" rx="8" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+  <text x="390" y="569" text-anchor="middle" font-family="Arial" font-size="13" fill="#F2F2F0" font-weight="bold">Meta Cloud API</text>
+  <text x="390" y="588" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">WhatsApp</text>
+
+  <line x1="390" y1="483" x2="390" y2="545" stroke="#00FF7F" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="404" y="518" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">retry: 3x / 60s</text>
+
+  <!-- legend -->
+  <line x1="60" y1="625" x2="90" y2="625" stroke="#00FF7F" stroke-width="2"/>
+  <text x="98" y="629" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">caminho crítico de envio</text>
+  <line x1="290" y1="625" x2="320" y2="625" stroke="#4B5563" stroke-width="1.5"/>
+  <text x="328" y="629" font-family="'JetBrains Mono',monospace" font-size="10" fill="#6B7280">acesso direto a dado/storage</text>
+</svg>
