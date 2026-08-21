@@ -1,0 +1,62 @@
+<svg viewBox="0 0 1100 900" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#00FF7F"/>
+  </marker>
+  <marker id="arrowMuted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#9CA3AF"/>
+  </marker>
+  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#0B0D0F"/>
+    <stop offset="100%" stop-color="#14181A"/>
+  </linearGradient>
+</defs>
+<rect width="1100" height="900" fill="url(#bg)"/>
+<text x="550" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" letter-spacing="3" fill="#6B7280">SEQUÊNCIA — DE UMA PLANILHA A UMA MENSAGEM NO WHATSAPP</text>
+<rect x="20" y="40" width="140" height="40" rx="6" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+<text x="90" y="65" text-anchor="middle" font-family="Arial" font-size="12" fill="#F2F2F0" font-weight="bold">Frontend</text>
+<line x1="90" y1="80" x2="90" y2="860" stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="230" y="40" width="140" height="40" rx="6" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+<text x="300" y="65" text-anchor="middle" font-family="Arial" font-size="12" fill="#F2F2F0" font-weight="bold">FastAPI</text>
+<line x1="300" y1="80" x2="300" y2="860" stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="400" y="40" width="140" height="40" rx="6" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+<text x="470" y="65" text-anchor="middle" font-family="Arial" font-size="12" fill="#F2F2F0" font-weight="bold">R2</text>
+<line x1="470" y1="80" x2="470" y2="860" stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="560" y="40" width="140" height="40" rx="6" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+<text x="630" y="65" text-anchor="middle" font-family="Arial" font-size="12" fill="#F2F2F0" font-weight="bold">Postgres</text>
+<line x1="630" y1="80" x2="630" y2="860" stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="740" y="40" width="140" height="40" rx="6" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+<text x="810" y="65" text-anchor="middle" font-family="Arial" font-size="12" fill="#F2F2F0" font-weight="bold">Celery</text>
+<line x1="810" y1="80" x2="810" y2="860" stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="920" y="40" width="140" height="40" rx="6" fill="#101413" stroke="#374151" stroke-width="1.5"/>
+<text x="990" y="65" text-anchor="middle" font-family="Arial" font-size="12" fill="#F2F2F0" font-weight="bold">Meta Cloud API</text>
+<line x1="990" y1="80" x2="990" y2="860" stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="90" y1="115" x2="300" y2="115" stroke="#00FF7F" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="195.0" y="107" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">POST /upload/process</text>
+<line x1="300" y1="170" x2="470" y2="170" stroke="#00FF7F" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="385.0" y="162" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">salva planilha original</text>
+<rect x="205" y="211" width="190" height="34" rx="5" fill="#0d1f17" stroke="#00FF7F" stroke-width="1.2"/>
+<text x="300" y="232" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#00FF7F">aplica filtros + monta msg</text>
+<line x1="300" y1="275" x2="90" y2="275" stroke="#9CA3AF" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#arrowMuted)"/>
+<text x="195.0" y="267" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">200 · fechamento enfileirado</text>
+<line x1="300" y1="330" x2="810" y2="330" stroke="#00FF7F" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="555.0" y="322" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">enqueue (1 task / destinatário)</text>
+<line x1="810" y1="400" x2="990" y2="400" stroke="#00FF7F" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="900.0" y="392" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">POST mensagem</text>
+<line x1="990" y1="450" x2="810" y2="450" stroke="#9CA3AF" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#arrowMuted)"/>
+<text x="900.0" y="442" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">resposta (sucesso ou falha)</text>
+<rect x="660" y="366" width="360" height="106" fill="none" stroke="#4B5563" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="670" y="382" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#6B7280">loop até 3x / 60s se falha transitória</text>
+<line x1="810" y1="517" x2="630" y2="517" stroke="#00FF7F" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="720.0" y="509" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">grava resultado em sends</text>
+<line x1="60" y1="587" x2="1040" y2="587" stroke="#374151" stroke-width="1" stroke-dasharray="2 6"/>
+<text x="550" y="579" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#4B5563">— mais tarde, consulta assíncrona do usuário —</text>
+<line x1="90" y1="632" x2="300" y2="632" stroke="#00FF7F" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="195.0" y="624" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">GET /sends (histórico)</text>
+<line x1="300" y1="687" x2="630" y2="687" stroke="#00FF7F" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="465.0" y="679" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">query sends</text>
+<line x1="630" y1="742" x2="300" y2="742" stroke="#9CA3AF" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#arrowMuted)"/>
+<text x="465.0" y="734" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">resultados</text>
+<line x1="300" y1="797" x2="90" y2="797" stroke="#9CA3AF" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#arrowMuted)"/>
+<text x="195.0" y="789" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D1D5DB">histórico atualizado</text>
+</svg>

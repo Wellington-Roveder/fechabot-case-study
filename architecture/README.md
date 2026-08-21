@@ -94,6 +94,9 @@ Esse fluxo é a espinha dorsal do produto — é também o fluxo documentado
 com prova real (planilha → mensagem chegando no WhatsApp) na seção de
 demonstração do [README principal](../README.md).
 
+Versão expandida deste fluxo, incluindo casos de erro e retry, em
+[`data-flow.md`](./data-flow.md).
+
 ---
 
 ## Decisões relacionadas
