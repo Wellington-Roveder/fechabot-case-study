@@ -21,12 +21,13 @@ funcionalidade e débito técnico geral.
 | 10 | Hardening de segurança do backend — rate limiting, CORS, headers, `SecretStr` em credenciais, validações de schema reforçadas (17 itens corrigidos) |
 | 10.5 | Reclassificação automática de categoria de template pela Meta — ver [ADR 002](../decisions/002-categoria-template-requested-effective.md) |
 | 10.6 | Reconstrução completa do modelo de sessão + MFA — ver [`security/`](../security) |
+| — | CI via GitHub Actions — lint, testes contra Postgres real, gate de cobertura incremental. Ver [ADR 006](../decisions/006-ci-github-actions.md) |
 
 ## Planejado
 
 | Sprint | Escopo |
 |---|---|
-| 11 | SaaS completo — onboarding self-service, cobrança recorrente, monitoramento, deploy em produção, CI/CD, tela de chat da IA no frontend, tratamento de erro 429 |
+| 11 | SaaS completo — onboarding self-service, cobrança recorrente, monitoramento, deploy em produção, CD (o CI já está em produção), tela de chat da IA no frontend, tratamento de erro 429 |
 | 12 | Wizard de conexão WhatsApp via Embedded Signup da Meta (substituindo o formulário manual atual) — bloqueado por pré-requisitos fora do código (verificação de Business Portfolio, status de Tech Provider junto à Meta) |
 | 13 | LGPD formal — bases legais de tratamento, política de retenção, mapeamento de dados pessoais, investigação de cookies de terceiro observados em ambiente de teste |
 | — | Agendamento recorrente de fechamento (Celery Beat) |
@@ -36,18 +37,19 @@ funcionalidade e débito técnico geral.
 Itens de baixo impacto, sem risco de segurança ativo — corretude e
 polimento, não brecha:
 
-| Item | Categoria |
-|---|---|
-| Endpoints retornam 500 em vez de 400 para ID malformado em algumas rotas | Robustez / tratamento de erro |
-| Payload JSON inválido no endpoint de webhook propaga exceção não tratada em vez de responder 400 | Robustez / tratamento de erro |
-| Falhas de envio não registram o motivo retornado pela Meta, apenas o status HTTP | Observabilidade |
-| `/register` ainda não implementado (link morto na landing) | Funcionalidade pendente |
-| Sem idempotência em `POST /upload/process` — múltiplos cliques podem gerar múltiplos disparos | Robustez |
-| UUID/timestamp ausente no nome de arquivo enviado ao storage | Cosmético |
-| Rota de documentação (Swagger) referencia um endpoint de token inexistente | Cosmético |
-| Fonte carregada via `@import` em tempo de execução, deveria usar otimização nativa do framework | Performance / CSP |
-| Trackers de terceiro observados em ambiente de teste, origem ainda não confirmada — investigação prevista antes da Sprint 13 | Privacidade / LGPD |
-| Uso de dado pessoal (número de destinatário) ainda não avaliado sob a ótica de retenção/hash exigida por LGPD | Privacidade / LGPD |
+| Item | Categoria | Status |
+|---|---|---|
+| Payload JSON inválido no endpoint de webhook propaga exceção não tratada em vez de responder 400 | Robustez / tratamento de erro | ✅ Corrigido, validado por CI |
+| Endpoints retornam 500 em vez de 400 para ID malformado (deletes e acknowledge) | Robustez / tratamento de erro | ✅ Corrigido, validado por CI |
+| Falhas de envio não registram o motivo retornado pela Meta, apenas o status HTTP | Observabilidade | ⬜ Aberto |
+| `/register` ainda não implementado (link morto na landing) | Funcionalidade pendente | ⬜ Aberto |
+| Sem idempotência em `POST /upload/process` — múltiplos cliques podem gerar múltiplos disparos | Robustez | ⬜ Aberto |
+| UUID/timestamp ausente no nome de arquivo enviado ao storage | Cosmético | ⬜ Aberto |
+| Rota de documentação (Swagger) referencia um endpoint de token inexistente | Cosmético | ⬜ Aberto |
+| Fonte carregada via `@import` em tempo de execução, deveria usar otimização nativa do framework | Performance / CSP | ⬜ Aberto |
+| Trackers de terceiro observados em ambiente de teste, origem ainda não confirmada — investigação prevista antes da Sprint 13 | Privacidade / LGPD | ⬜ Aberto |
+| Uso de dado pessoal (número de destinatário) ainda não avaliado sob a ótica de retenção/hash exigida por LGPD | Privacidade / LGPD | ⬜ Aberto |
+| Cobertura de teste no gate de CI ainda baixa (40%, catraca subindo aos poucos) | Qualidade / processo | 🔄 Em andamento — ver [ADR 006](../decisions/006-ci-github-actions.md) |
 
 ## Fora do escopo desta lista
 

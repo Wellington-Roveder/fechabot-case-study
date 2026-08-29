@@ -10,6 +10,7 @@ consideradas e trade-offs assumidos, não só o resultado final.
 | 003 | [Envio ao WhatsApp sempre via fila assíncrona (Celery)](./003-envio-assincrono-celery.md) | Por que o pipeline de envio nasceu assíncrono, sem passar por uma versão síncrona |
 | 004 | [MFA via TOTP, não SMS ou e-mail](./004-mfa-totp.md) | Por que o segundo fator de autenticação ficou contido no próprio sistema, sem dependência de canal externo |
 | 005 | [Isolamento multi-tenant lógico, não físico](./005-isolamento-tenant-logico.md) | Por que `tenant_id` em coluna foi escolhido sobre schema separado, e o risco assumido nessa escolha |
+| 006 | [CI via GitHub Actions, com gate de cobertura incremental](./006-ci-github-actions.md) | Por que o gate de cobertura começou baixo (40%) deliberadamente, como uma catraca que sobe com o tempo |
 
 ---
 
