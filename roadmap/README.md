@@ -42,6 +42,12 @@ polimento, não brecha:
 | Payload JSON inválido no endpoint de webhook propaga exceção não tratada em vez de responder 400 | Robustez / tratamento de erro | ✅ Corrigido, validado por CI |
 | Endpoints retornam 500 em vez de 400 para ID malformado (deletes e acknowledge) | Robustez / tratamento de erro | ✅ Corrigido, validado por CI |
 | Falhas de envio não registram o motivo retornado pela Meta, apenas o status HTTP | Observabilidade | ⬜ Aberto |
+| `wamid` devolvido pela Meta não é extraído nem salvo; o webhook não consegue correlacionar status de entrega com o envio | Observabilidade | ⬜ Aberto |
+| `entry.time` do evento da Meta é ignorado; só existe `sends.sent_at`, gerado pelo banco, sem tratamento de eventos fora de ordem | Corretude | ⬜ Aberto |
+| Chamada à Anthropic sem timeout configurado | Robustez | ⬜ Aberto |
+| Dados históricos do tenant são interpolados no system prompt sem delimitação ou sanitização; há apenas instruções textuais contra manipulação | Segurança / IA | ⬜ Aberto |
+| Sem tratamento explícito de falha do Redis | Robustez / disponibilidade | ⬜ Aberto |
+| Reuso de código TOTP dentro da janela não é bloqueado | Segurança / MFA | ⬜ Aberto |
 | `/register` ainda não implementado (link morto na landing) | Funcionalidade pendente | ⬜ Aberto |
 | Sem idempotência em `POST /upload/process` — múltiplos cliques podem gerar múltiplos disparos | Robustez | ⬜ Aberto |
 | UUID/timestamp ausente no nome de arquivo enviado ao storage | Cosmético | ⬜ Aberto |
