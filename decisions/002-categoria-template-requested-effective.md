@@ -44,8 +44,9 @@ Junto com isso:
 
 - **`template_category_history`** — tabela que registra toda mudança
   real de `effective_category`, com guarda de idempotência (comparação
-  contra o valor atual no banco via `SELECT ... FOR UPDATE`, já que
-  webhooks da Meta não garantem ordem de entrega).
+  contra o valor atual no banco via `SELECT ... FOR UPDATE`). Essa
+  guarda protege contra o mesmo evento repetido, não contra eventos
+  diferentes que cheguem fora de ordem.
 - **Notificação persistente ao cliente** — quando `effective_category`
   diverge de `requested_category`, o cliente vê um modal (não um banner
   que desaparece) com duas opções explícitas: **"Continuar usando"** ou
@@ -84,8 +85,9 @@ do cliente, que é o requisito real por trás da decisão.
   "o que estava valendo" para qualquer ponto no tempo, via
   `template_category_history`.
 - A idempotência via `SELECT ... FOR UPDATE` protege contra
-  duplicidade em caso de reentrega de webhook pela Meta — cenário real
-  de webhooks, não hipotético.
+  duplicidade em caso de reentrega do mesmo webhook pela Meta — cenário
+  real de webhooks, não hipotético. Ela não resolve a chegada fora de
+  ordem de eventos diferentes.
 
 **Trade-offs assumidos:**
 - Mais uma tabela e mais um fluxo de UI (modal de reconhecimento) para
