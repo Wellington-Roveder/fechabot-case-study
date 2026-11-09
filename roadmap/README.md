@@ -11,7 +11,7 @@ funcionalidade e débito técnico geral.
 |---|---|
 | 1 | Fundação do banco — schema multi-tenant (tenants, users, filters, templates, sends, whatsapp_numbers, recipients) |
 | 2 | Filtros dinâmicos sobre planilha |
-| 3 | Autenticação JWT (bcrypt + python-jose) |
+| 3 | Autenticação JWT (bcrypt + PyJWT) |
 | 4 | Integração Meta Cloud API + Celery — pipeline assíncrono de envio, retry automático |
 | 5 | Pipeline completo de upload → processamento → disparo, CRUD de templates/destinatários/números |
 | 6 | Frontend MVP — login, dashboard, novo envio, histórico, configurações |
@@ -48,6 +48,7 @@ polimento, não brecha:
 | Dados históricos do tenant são interpolados no system prompt sem delimitação ou sanitização; há apenas instruções textuais contra manipulação | Segurança / IA | ⬜ Aberto |
 | Sem tratamento explícito de falha do Redis | Robustez / disponibilidade | ⬜ Aberto |
 | Reuso de código TOTP dentro da janela não é bloqueado | Segurança / MFA | ⬜ Aberto |
+| Dependência `python-jose` não usada ainda está declarada; dependências precisam ter versões fixadas | Manutenção / dependências | ⬜ Aberto |
 | `/register` ainda não implementado (link morto na landing) | Funcionalidade pendente | ⬜ Aberto |
 | Sem idempotência em `POST /upload/process` — múltiplos cliques podem gerar múltiplos disparos | Robustez | ⬜ Aberto |
 | UUID/timestamp ausente no nome de arquivo enviado ao storage | Cosmético | ⬜ Aberto |
