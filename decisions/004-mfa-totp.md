@@ -28,6 +28,9 @@ Google Authenticator e Authy), opt-in por usuário:
   token intermediário de vida curta (5 minutos, sem privilégios de
   sessão), e só o código TOTP (ou um código de backup) correto emite a
   sessão completa.
+- A validação usa `valid_window=1`, aceitando o intervalo anterior e o
+  posterior, cerca de ±30 segundos. O reuso do mesmo código dentro
+  dessa janela não é bloqueado. Códigos de backup são de uso único.
 
 Mais detalhes de implementação e validação em
 [`security/fase3-mfa.md`](../security/fase3-mfa.md).
