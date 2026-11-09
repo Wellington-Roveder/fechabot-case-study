@@ -60,6 +60,14 @@ de expor JSON.
   sistema — WhatsApp para entrega de mensagem, Claude para o módulo de
   IA conversacional.
 
+### Validação do webhook da Meta
+
+O webhook valida o header `X-Hub-Signature-256` sobre o corpo bruto da
+requisição com HMAC-SHA256 e o App Secret da integração. A assinatura
+exige o prefixo `sha256=` e é comparada com `hmac.compare_digest`.
+Ausência do header, assinatura inválida e segredo incorreto são cobertos
+por testes.
+
 ---
 
 ## Fluxo de dados: de uma planilha a uma mensagem no WhatsApp
