@@ -82,6 +82,9 @@ sólidos desde antes e foram apenas mantidos ou estendidos:
   novos (MFA, logout-all)
 - Criptografia consistente para credenciais de terceiro e secrets MFA,
   reaproveitando o mesmo módulo de criptografia
+- Tokens da Meta por tenant ficam em `whatsapp_numbers.access_token`,
+  criptografados com Fernet, com a chave mantida em variável de ambiente;
+  só são descriptografados em memória.
 - Disposição de testar cada fase em profundidade antes de avançar — os
   quatro bugs documentados foram capturados justamente porque nenhuma
   fase foi dada como concluída sem checklist funcional completo
