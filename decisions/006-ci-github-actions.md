@@ -44,12 +44,11 @@ vive.
 ## O gate de cobertura como catraca incremental, não valor definitivo
 
 O número 40% não foi escolhido como meta final — foi escolhido através
-de um processo prático: a intenção original era travar em 80%, mas ao
-testar contra a suíte de testes existente, a cobertura real bateu 44%.
-Em vez de manter um gate inatingível (que bloquearia todo PR até a
-suíte de testes crescer significativamamente), o piso foi ajustado para
-40% — abaixo da cobertura atual, mas alto o suficiente para pegar uma
-queda real de cobertura.
+de um processo prático: a intenção original era travar em 80%, mas o
+gate foi ajustado para 40%. Em vez de manter um gate inatingível (que
+bloquearia todo PR até a suíte de testes crescer significativamente), o
+piso ficou em 40% — abaixo da cobertura atual, mas alto o suficiente
+para pegar uma queda real de cobertura.
 
 A ideia é subir esse piso aos poucos, conforme mais testes forem
 escritos — o gate funciona como uma **catraca**: impede regressão

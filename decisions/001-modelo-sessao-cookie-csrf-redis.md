@@ -83,6 +83,12 @@ estado intermediário para gerenciar.
   vale mais, para este produto, do que a resiliência a uma
   indisponibilidade do Redis (que já é dependência crítica de outras
   partes do sistema, como a fila Celery).
+- Em rotas autenticadas, `session_exists()` não tem tratamento de erro;
+  uma falha de conexão tende a gerar 500, não 401. No login, falhas ao
+  criar a sessão também são convertidas em 500. Não há política de
+  fallback.
+- A persistência do Redis usa apenas um volume Docker em `/data`; AOF e
+  RDB não são configurados explicitamente.
 - **Uma consulta a mais por requisição autenticada.** Custo de latência
   pequeno, mas existe — não é "gratuito" como validar só a assinatura
   do JWT localmente.

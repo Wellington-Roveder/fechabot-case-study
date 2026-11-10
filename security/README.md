@@ -20,6 +20,15 @@ completa — cookie `httpOnly` + CSRF via double-submit + CSP com nonce
 por requisição + allowlist de sessão revogável + step-up authentication
 + MFA opcional (TOTP).
 
+## Assinatura do webhook da Meta
+
+O webhook valida a assinatura HMAC-SHA256 sobre o corpo bruto da
+requisição, usando o App Secret configurado para a integração. O valor
+recebido precisa ter o prefixo `sha256=` e é comparado com
+`hmac.compare_digest` a partir do header `X-Hub-Signature-256`.
+Os testes cobrem ausência do header, assinatura inválida e segredo
+incorreto.
+
 No processo, quatro bugs técnicos não previstos no escopo original
 foram descobertos e corrigidos — documentados separadamente porque são
 o tipo de problema que só aparece testando de ponta a ponta, não em
@@ -73,6 +82,9 @@ sólidos desde antes e foram apenas mantidos ou estendidos:
   novos (MFA, logout-all)
 - Criptografia consistente para credenciais de terceiro e secrets MFA,
   reaproveitando o mesmo módulo de criptografia
+- Tokens da Meta por tenant ficam em `whatsapp_numbers.access_token`,
+  criptografados com Fernet, com a chave mantida em variável de ambiente;
+  só são descriptografados em memória.
 - Disposição de testar cada fase em profundidade antes de avançar — os
   quatro bugs documentados foram capturados justamente porque nenhuma
   fase foi dada como concluída sem checklist funcional completo

@@ -60,6 +60,23 @@ de expor JSON.
   sistema — WhatsApp para entrega de mensagem, Claude para o módulo de
   IA conversacional.
 
+### Chat de IA
+
+O histórico usado pelo chat é filtrado por `tenant_id`, e cada conversa
+usa o tenant do usuário autenticado, mantendo o isolamento entre
+tenants. Como débito conhecido, os dados históricos são interpolados no
+system prompt sem delimitação ou sanitização; há apenas instruções
+textuais contra manipulação. A chamada à Anthropic também não tem
+timeout configurado.
+
+### Validação do webhook da Meta
+
+O webhook valida o header `X-Hub-Signature-256` sobre o corpo bruto da
+requisição com HMAC-SHA256 e o App Secret da integração. A assinatura
+exige o prefixo `sha256=` e é comparada com `hmac.compare_digest`.
+Ausência do header, assinatura inválida e segredo incorreto são cobertos
+por testes.
+
 ---
 
 ## Fluxo de dados: de uma planilha a uma mensagem no WhatsApp

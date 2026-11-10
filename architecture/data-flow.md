@@ -33,8 +33,8 @@ aqui o foco é também nos casos de erro e retry, não só no caminho feliz.
 7. **Enfileiramento por destinatário.** Uma task Celery é despachada
    para cada destinatário do envio — não uma task só para todos.
 8. **Chamada à Meta Cloud API.** O worker faz a chamada real de envio.
-9. **Persistência do resultado.** Sucesso ou falha, o resultado vira um
-   registro em `sends` — nunca é descartado silenciosamente.
+9. **Persistência do resultado.** Cada destinatário recebe uma linha em
+   `sends` com o resultado final — nunca é descartado silenciosamente.
 10. **Consulta no Histórico.** O usuário acompanha o resultado real na
     tela de Histórico — a confirmação da etapa 6 é sobre o
     enfileiramento, não sobre a entrega de fato.
@@ -43,23 +43,26 @@ aqui o foco é também nos casos de erro e retry, não só no caminho feliz.
 
 | Cenário | Comportamento |
 |---|---|
-| Falha transitória na chamada à Meta (timeout, instabilidade momentânea) | Retry automático — 3 tentativas, intervalo de 60s entre elas |
-| Todas as tentativas de retry se esgotam | Registro final em `sends` com status de falha — visível no Histórico, não descartado |
-| Falha antes mesmo de qualquer chamada à Meta (ex: erro de validação interna) | Também gera registro em `sends` — corrigido na Sprint 10.5 depois que um bug real permitia que esse caso específico não deixasse rastro nenhum |
-| Retry duplicando registro de falha | Corrigido na Sprint 10 — o registro de falha agora é gravado apenas na primeira tentativa, não a cada retry |
-| Tenant sem número WhatsApp ativo configurado | O envio não é despachado — o sistema depende de exatamente 1 número ativo por tenant (regra de MVP) |
+| Falha transitória na chamada à Meta (timeout, instabilidade momentânea) | Não grava linha antes do retry; o resultado final é persistido ao concluir o fluxo |
+| Retry bem-sucedido | Uma linha em `sends` com status `sent`, visível no Histórico |
+| Todas as tentativas de retry se esgotam | Uma linha em `sends` com status `failed`, visível no Histórico |
+| Falha antes mesmo de qualquer chamada à Meta (ex: erro de validação interna) | Uma linha em `sends` com status `failed` — corrigido na Sprint 10.5 depois que um bug real permitia que esse caso específico não deixasse rastro nenhum |
+| Retry duplicando registro de falha | Corrigido na Sprint 10 — o resultado final agora é gravado uma única vez por destinatário |
+| Tenant sem número WhatsApp ativo configurado | Uma linha em `sends` com status `failed`; o sistema depende de exatamente 1 número ativo por tenant (regra de MVP) |
 | Planilha com formato ou colunas inválidas | Rejeitada na etapa de leitura de colunas (passo 2), antes de qualquer processamento ou persistência de filtro |
 
 ## Por que cada etapa de falha vira registro
 
 A regra de arquitetura por trás da coluna "Comportamento" acima não é
-incidental — é deliberada: **toda tentativa de envio, sucesso ou
-falha, deixa rastro**. Um sistema de fila com retry introduz uma
-categoria própria de bug (visto na prática nos dois itens da tabela
-marcados como "corrigido na Sprint 10 / 10.5") — descartar uma falha
-silenciosamente parece inofensivo até o momento em que alguém precisa
-entender por que uma mensagem nunca chegou, e não há registro nenhum
-de que ela sequer foi tentada.
+incidental — é deliberada: **cada destinatário tem uma linha com o
+resultado final**. Falhas transitórias não criam linhas antes do retry;
+um retry bem-sucedido termina em `sent`, retries esgotados terminam em
+`failed`, e falhas de configuração também terminam em `failed`. Um
+sistema de fila com retry introduz uma categoria própria de bug (visto
+na prática nos dois itens da tabela marcados como "corrigido na Sprint
+10 / 10.5") — descartar uma falha silenciosamente parece inofensivo até
+o momento em que alguém precisa entender por que uma mensagem nunca
+chegou, e não há registro nenhum do resultado final.
 
 ## Fluxos relacionados, fora do escopo deste documento
 

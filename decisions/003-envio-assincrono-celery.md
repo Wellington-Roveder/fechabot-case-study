@@ -36,18 +36,22 @@ síncrona dentro do ciclo de requisição-resposta:
 - O endpoint que processa um fechamento (`POST /upload/process`)
   enfileira uma task por destinatário e retorna imediatamente — não
   espera nenhuma chamada à Meta terminar.
-- Cada task tem **retry automático: 3 tentativas, intervalo de 60s**
-  entre elas, para lidar com falhas transitórias (timeout, instabilidade
-  momentânea da Meta).
-- **Toda tentativa de envio deixa rastro em `sends`** — sucesso ou
-  falha — nunca é descartada silenciosamente. Essa regra foi reforçada
-  depois que um bug real foi encontrado (Sprint 10.5): tentativas que
-  falhavam *antes* de qualquer chamada à Meta não estavam sendo
-  gravadas. Corrigido e coberto por teste.
+- Cada task tem retry automático para lidar com falhas transitórias
+  (timeout, instabilidade momentânea da Meta). Uma linha em `sends` é
+  criada por destinatário com o resultado final: falhas transitórias não
+  gravam uma linha antes do retry; um retry bem-sucedido grava `sent`;
+  retries esgotados gravam `failed`; e falha de configuração, como a
+  ausência de número ativo, também grava `failed`.
+- A configuração atual usa `max_retries=3` e `countdown=60`: uma
+  tentativa inicial mais até 3 retries, com intervalo de 60 segundos.
+  Esses valores não têm justificativa documentada.
+- Essa regra foi reforçada depois que um bug real foi encontrado
+  (Sprint 10.5): tentativas que falhavam *antes* de qualquer chamada à
+  Meta não estavam sendo gravadas. Corrigido e coberto por teste.
 - Um bug de duplicidade nos retries também foi corrigido na Sprint 10:
   o registro de falha (`failed`) estava sendo salvo a cada tentativa
-  de retry, gerando duplicatas — corrigido para gravar apenas na
-  primeira tentativa.
+  de retry, gerando duplicatas. O resultado final passou a ser gravado
+  uma única vez por destinatário.
 
 ## Alternativas consideradas
 
@@ -58,6 +62,9 @@ síncrona antes mesmo de código ser escrito: com múltiplos destinatários
 por envio e uma dependência externa de latência variável, bloquear a
 resposta do usuário nunca foi uma opção viável o suficiente para
 justificar prototipar.
+
+Também não houve comparação documentada com `BackgroundTasks`, RQ ou
+Dramatiq (Celery com Redis como broker e backend).
 
 ## Consequências
 
